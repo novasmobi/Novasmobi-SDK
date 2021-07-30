@@ -68,14 +68,16 @@ SDK是使用OC编写的.framework动态库。
 
 - 在AppDelegate.m的didFinishLaunchingWithOptions方法中添加以下代码
 
+```
 //初始化SDK   app_id, deskey, googleSignInClientID这些参数需要联系游戏发行方获取，改为自己的！
 
 [DKGASDK registerDKGASDKWithAppid:app_id appkey:deskey googleSignInClientID:googleSignInClientID application:application options:launchOptions result:^(BOOL isSuccess) {
 
 }];
+```
 
 - 在AppDelegate.m中添加以下方法
-
+```
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler
 {
 
@@ -113,6 +115,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     completionHandler(UIBackgroundFetchResultNewData);
     
 }
+```
 
 3.2 登陆与回调
 
@@ -122,18 +125,20 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
 //弹框登录
 
+```
  [DKGASDK loginWithSuccess:^(NSDictionary * _Nonnull userInfo) {
 
     NSLog(@"弹框登录成功 ： %@",userInfo);
     
-} failed:^(NSString * _Nonnull result) {
+    } failed:^(NSString * _Nonnull result) {
 
-NSLog(@"弹框登录失败 ： %@",result);
+    NSLog(@"弹框登录失败 ： %@",result);
 
-}];
+ }];
+```
 
 //静默登录
-
+```
 [DKGASDK silenceLoginWithSuccess:^(NSDictionary * _Nonnull userInfo) {
 
     NSLog(@"静默登录成功 ： %@",userInfo);
@@ -142,6 +147,7 @@ NSLog(@"弹框登录失败 ： %@",result);
 
     NSLog(@"静默登录失败 ： %@",result);
 }];
+```
 
 3.3 同步角色与回调
 
@@ -149,6 +155,7 @@ NSLog(@"弹框登录失败 ： %@",result);
 
 - 在游戏使用中，此函数中的任意参数发生变化，都需要调用此函数，进行数据同步
 
+```
 // 同步游戏角色(游戏登录之后必须调用)
 
 //@brief 角色信息上报，要求角色信息每次变更的时候调用（比如等级的提升）
@@ -163,14 +170,13 @@ NSLog(@"弹框登录失败 ： %@",result);
 
 //@param roleName 角色名称
 
-[DKGASDK reportRoleInformationWithNewZoneID:@""
-newZoneName:@""
-newRoleID:@""
-newRoleLevel:1
-newRoleName:@""];
+
+[DKGASDK reportRoleInformationWithNewZoneID:@"" newZoneName:@"" newRoleID:@"" newRoleLevel:1 newRoleName:@""];
+```
 
 3.4 内购充值与回调
 
+```
 //@param vorderID 订单id
 
 //@param zoneID 角色区服id
@@ -189,14 +195,9 @@ newRoleName:@""];
 
 //@param failed block 支付失败返回的字符串，block里面处理支付失败的逻辑
 
-[DKGASDK payWithVorderID:vorderID
-zoneID:@""
-zoneName:@"57区"
-roleID:@""
-roleLevel:@""
-roleName:@""
-appleproductID:@""
-success:^(NSString *result) {
+
+[DKGASDK payWithVorderID:vorderID zoneID:@"" zoneName:@"" roleID:@"" roleLevel:@"" roleName:@"" appleproductID:@""
+    success:^(NSString *result) {
 
 NSLog(@"成功 ： %@",result);
 
@@ -206,9 +207,11 @@ failed:^(NSString *result) {
 NSLog(@"失败 ： %@",result);
 
 }];
+```
 
 3.5 打开SDK账号中心界面
 
+```
 [DKGASDK bindingFacebookOrGameCenterWithSuccess:^(NSString * _Nonnull isBind) {
 
     NSLog(@"绑定第三方账号成功 ： %@",isBind);
@@ -228,27 +231,33 @@ NSLog(@"失败 ： %@",result);
     }];
     
 }];
+```
 
 3.6 打开SDK绑定第三方账号界面
 
+```
 [DKGASDK bindingThirdPartyAccountWithSuccess:^(NSString * _Nonnull isBind) {
     
 }];
+```
 
 3.7 打开SDK客服界面
-
+```
 [DKGASDK onlineService];
-
+```
 3.8 获取推送token
 
+```
 [DKGASDK getFcmToken:^(NSString * _Nonnull result) {
 
     NSLog(@"获取推送参数成功 ： %@",result);
     
 }];
+```
 
 3.8  分享
 
+```
 //@brief 分享  图片和链接分享方式二选一  不需要的的参数传空
 
 //@param shareImage 分享图片
@@ -263,6 +272,7 @@ NSLog(@"失败 ： %@",result);
 
 //@param failed block 处理分享失败的逻辑
 
+
 [DKGASDK fbShareImage:nil shareContentURL:nil shareHashtag:nil viewController:self success:^(NSString * _Nonnull result) {
 
     NSLog(@"分享成功回调%@",result);
@@ -272,9 +282,11 @@ NSLog(@"失败 ： %@",result);
     NSLog(@"分享失败回调%@",result);
     
 }];
+```
 
 3.8  调用播放视频广告
 
+```
 [DKGASDK rewardedVideoWithOpen:^(NSString * _Nonnull result) {
 
     NSLog(@"视频广告开始播放%@",result);
@@ -289,9 +301,11 @@ NSLog(@"失败 ： %@",result);
     NSLog(@"视频广告失败回调%@",result);
 
 }];
+```
 
 3.9  埋点事件
 
+```
 //@brief 自定义统计事件
 
 //@param eventName 事件名称 可传常量ADJUST_C_P_1或者字符串"c1"
@@ -301,11 +315,13 @@ NSLog(@"失败 ： %@",result);
 //@param useFB  如果传YES 则启用firebase和FB打点  传NO 则不启用firebase和FB打点
 
 [DKGASDK statistic_customEvent:ADJUST_C_P_1 withEventDic:nil useFB:YES];
-
+```
+```
 [DKGASDK statistic_customEvent:@"c1" withEventDic:nil useFB:YES];
-
+```
 3.10  获取本地化金额接口
 
+```
 NSArray * productArr = @[@"com.game.id1",@"com.game.id2"];
 
 [DKGASDK getLocalizedAmountWithProduct_idArray:productArr success:^(NSArray * _Nonnull userInfo) {
@@ -317,3 +333,4 @@ NSLog(@"获取本地金额成功 ： %@",userInfo);
 NSLog(@"获取本地金额失败 ： %@",result);
 
 }];
+```
