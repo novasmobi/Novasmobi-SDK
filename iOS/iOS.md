@@ -3,9 +3,11 @@
 SDK是使用OC编写的.framework动态库。
 1.1将demo中KWMJSDK.framework文件，GoogleService-Info.plist和AdjustStatistic.plist拖入工程。
 1.2将这1个库设置为动态库，会默认在Linked Framework中也添加这1个库，如果Linked Framework已经存在，请删除重复的库。最后是下面这种样子。
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/1.png)
 
 1.3.Build Setting中关闭bitcode，添加-ObjC
-
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/2.png)
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/3.png)
 2、Info.plist文件配置
 注意:下列所有配置请务必使用您实际的应用 ID，而不是截图列出的 ID。 否则将会导致崩溃。
 （2.1）添加 http支持
@@ -27,7 +29,7 @@ SDK是使用OC编写的.framework动态库。
 3.1 SDK初始化
 在AppDelegate.m中添加头文件引用
 #import <DKGASDK/DKGASDK.h>
-在AppDelegate.m的didFinishLaunchingWithOptions方法中添加以下代码
+- 在AppDelegate.m的didFinishLaunchingWithOptions方法中添加以下代码
 //初始化SDK
 //app_id, deskey, googleSignInClientID这些参数需要联系游戏发行方获取，改为自己的！
 
@@ -46,7 +48,8 @@ SDK是使用OC编写的.framework动态库。
         NSLog(@"静默登录失败 ： %@",result);
     }];
 }];
-在AppDelegate.m中添加以下方法
+
+- 在AppDelegate.m中添加以下方法
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler
 {
     [DKGASDK application:application continueUserActivity:userActivity restorationHandler:nil];
