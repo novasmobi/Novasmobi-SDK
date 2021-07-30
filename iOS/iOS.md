@@ -6,24 +6,55 @@ SDK是使用OC编写的.framework动态库。
 ![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/1.png)
 
 1.3.Build Setting中关闭bitcode，添加-ObjC
+
 ![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/2.png)
+
 ![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/3.png)
+
 2、Info.plist文件配置
 注意:下列所有配置请务必使用您实际的应用 ID，而不是截图列出的 ID。 否则将会导致崩溃。
+
 （2.1）添加 http支持
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/4.png)
 
 （2.2）添加 Facebook相关内容
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/5.png)
+
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/6.png)
+
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/7.png)
+
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/8.png)
 
 （2.3）添加谷歌相关内容
 
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/9.png)
+
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/10.png)
+
 （2.4）添加Line相关内容,开启Associated Domains权限
+
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/11.png)
+
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/12.png)
+
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/13.png)
 
 （2.5）配置ATT权限和SKAdNetworkIdentifier
 
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/14.png)
+
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/15.png)
+
 （2.6）添加ironSource_ID
+
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/16.png)
 
 （2.7）推送配置
 请参照 demo 中的工程配置 Capabilities,打开 Background Modes 中 Remote notifications 权限，Game Center，In-App Purchase，Sign in with Apple 和 Push Notifications 权限，如下图所示 
+
+![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/17.png)
+
 
 3.SDK初始化与API接口
 3.1 SDK初始化
