@@ -127,9 +127,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
  }];
 ```
-
-//静默登录
 ```
+//静默登录
+
 [DKGASDK silenceLoginWithSuccess:^(NSDictionary * _Nonnull userInfo) {
 
     NSLog(@"静默登录成功 ： %@",userInfo);
