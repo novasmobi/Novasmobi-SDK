@@ -15,9 +15,11 @@ SDK是使用OC编写的.framework动态库。
 注意:下列所有配置请务必使用您实际的应用 ID，而不是截图列出的 ID。 否则将会导致崩溃。
 
 （2.1）添加 http支持
+
 ![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/4.png)
 
 （2.2）添加 Facebook相关内容
+
 ![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/5.png)
 
 ![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/6.png)
