@@ -1,8 +1,11 @@
 # iOS接入文档
 1.导入和工程配置
 SDK是使用OC编写的.framework动态库。
+
 1.1将demo中RICHSDK.framework文件，GoogleService-Info.plist和AdjustStatistic.plist拖入工程。
+
 1.2将这1个库设置为动态库，会默认在Linked Framework中也添加这1个库，如果Linked Framework已经存在，请删除重复的库。最后是下面这种样子。
+
 ![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/1.png)
 
 1.3.Build Setting中关闭bitcode，添加-ObjC
