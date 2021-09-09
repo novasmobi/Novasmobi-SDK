@@ -67,14 +67,14 @@ SDK是使用OC编写的.framework动态库。
 
 在AppDelegate.m中添加头文件引用
 
-#import <DKGASDK/DKGASDK.h>
+#import <RICHSDK/RICHSDK.h>
 
 - 在AppDelegate.m的didFinishLaunchingWithOptions方法中添加以下代码
 
 ```
 //初始化SDK   app_id, deskey, googleSignInClientID这些参数需要联系游戏发行方获取，改为自己的！
 
-[DKGASDK registerDKGASDKWithAppid:app_id appkey:deskey googleSignInClientID:googleSignInClientID application:application options:launchOptions result:^(BOOL isSuccess) {
+[RICHSDK registerRICHSDKWithAppid:app_id appkey:deskey googleSignInClientID:googleSignInClientID application:application options:launchOptions result:^(BOOL isSuccess) {
 
 }];
 ```
@@ -83,28 +83,28 @@ SDK是使用OC编写的.framework动态库。
 ```
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler
 {
-    [DKGASDK application:application continueUserActivity:userActivity restorationHandler:nil];
+    [RICHSDK application:application continueUserActivity:userActivity restorationHandler:nil];
     return YES;
     // Your other code to handle universal links and/or user activities.
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [DKGASDK applicationDidBecomeActive:application];
+    [RICHSDK applicationDidBecomeActive:application];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application{
-    [DKGASDK appDidEnterBackground:application];
+    [RICHSDK appDidEnterBackground:application];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    [DKGASDK application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    [RICHSDK application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
     return YES;
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
-    [DKGASDK didReceiveRemoteNotification:userInfo];
+    [RICHSDK didReceiveRemoteNotification:userInfo];
     
     completionHandler(UIBackgroundFetchResultNewData);
     
@@ -115,12 +115,12 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
 - SDK为游戏方提供了两种登录方式，即弹框登录和静默登录
 
-- 在项目中需要进行登录操作的xxx.h或xxx.m文件中导入 #import <DKGASDK/DKGASDK.h>
+- 在项目中需要进行登录操作的xxx.h或xxx.m文件中导入 #import <RICHSDK/RICHSDK.h>
 
 ```
 //弹框登录
 
- [DKGASDK loginWithSuccess:^(NSDictionary * _Nonnull userInfo) {
+ [RICHSDK loginWithSuccess:^(NSDictionary * _Nonnull userInfo) {
 
     NSLog(@"弹框登录成功 ： %@",userInfo);
     
@@ -133,7 +133,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 ```
 //静默登录
 
-[DKGASDK silenceLoginWithSuccess:^(NSDictionary * _Nonnull userInfo) {
+[RICHSDK silenceLoginWithSuccess:^(NSDictionary * _Nonnull userInfo) {
 
     NSLog(@"静默登录成功 ： %@",userInfo);
     
@@ -157,7 +157,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 //@param roleID 角色id
 //@param roleLevel 角色等级 NSInteger类型
 //@param roleName 角色名称
-[DKGASDK reportRoleInformationWithNewZoneID:@"" newZoneName:@"" newRoleID:@"" newRoleLevel:1 newRoleName:@""];
+[RICHSDK reportRoleInformationWithNewZoneID:@"" newZoneName:@"" newRoleID:@"" newRoleLevel:1 newRoleName:@""];
 ```
 
 3.4 内购充值与回调
@@ -172,7 +172,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 //@param appleproductID 苹果产品id 计费点（com.game.id）
 //@param success block 支付成功返回的字符串，block里面处理支付成功的逻辑
 //@param failed block 支付失败返回的字符串，block里面处理支付失败的逻辑
-[DKGASDK payWithVorderID:vorderID zoneID:@"" zoneName:@"" roleID:@"" roleLevel:@"" roleName:@"" appleproductID:@""
+[RICHSDK payWithVorderID:vorderID zoneID:@"" zoneName:@"" roleID:@"" roleLevel:@"" roleName:@"" appleproductID:@""
     success:^(NSString *result) {
     NSLog(@"成功 ： %@",result);
 }
@@ -184,7 +184,7 @@ failed:^(NSString *result) {
 3.5 打开SDK账号中心界面
 
 ```
-[DKGASDK bindingFacebookOrGameCenterWithSuccess:^(NSString * _Nonnull isBind) {
+[RICHSDK bindingFacebookOrGameCenterWithSuccess:^(NSString * _Nonnull isBind) {
 
     NSLog(@"绑定第三方账号成功 ： %@",isBind);
     
@@ -192,7 +192,7 @@ failed:^(NSString *result) {
 
     NSLog(@"切换账号成功 ： %@",message);
     //切换账号后需跳转到游戏初始化界面  然后调用弹窗登录界面
-    [DKGASDK loginWithSuccess:^(NSDictionary * _Nonnull userInfo) {
+    [RICHSDK loginWithSuccess:^(NSDictionary * _Nonnull userInfo) {
         NSLog(@"登录成功 ： %@",userInfo);
     } failed:^(NSString * _Nonnull message) {
         NSLog(@"登录失败 ： %@",message);
@@ -203,19 +203,19 @@ failed:^(NSString *result) {
 3.6 打开SDK绑定第三方账号界面
 
 ```
-[DKGASDK bindingThirdPartyAccountWithSuccess:^(NSString * _Nonnull isBind) {
+[RICHSDK bindingThirdPartyAccountWithSuccess:^(NSString * _Nonnull isBind) {
     
 }];
 ```
 
 3.7 打开SDK客服界面
 ```
-[DKGASDK onlineService];
+[RICHSDK onlineService];
 ```
 3.8 获取推送token
 
 ```
-[DKGASDK getFcmToken:^(NSString * _Nonnull result) {
+[RICHSDK getFcmToken:^(NSString * _Nonnull result) {
 
     NSLog(@"获取推送参数成功 ： %@",result);
     
@@ -232,7 +232,7 @@ failed:^(NSString *result) {
 //@param viewController 视图控制器 必传
 //@param success block 处理分享成功的逻辑
 //@param failed block 处理分享失败的逻辑
-[DKGASDK fbShareImage:nil shareContentURL:nil shareHashtag:nil viewController:self success:^(NSString * _Nonnull result) {
+[RICHSDK fbShareImage:nil shareContentURL:nil shareHashtag:nil viewController:self success:^(NSString * _Nonnull result) {
     NSLog(@"分享成功回调%@",result);
 } failed:^(NSString * _Nonnull result) {
     NSLog(@"分享失败回调%@",result);
@@ -242,7 +242,7 @@ failed:^(NSString *result) {
 3.8  调用播放视频广告
 
 ```
-[DKGASDK rewardedVideoWithOpen:^(NSString * _Nonnull result) {
+[RICHSDK rewardedVideoWithOpen:^(NSString * _Nonnull result) {
     NSLog(@"视频广告开始播放%@",result);
 }viewController:self success:^(NSDictionary * _Nonnull rvPlacementInfo) {
 
@@ -261,17 +261,18 @@ failed:^(NSString *result) {
 //@param eventName 事件名称 可传常量ADJUST_C_P_1或者字符串"c1"
 //@param eventDic 事件参数字典
 //@param useFB  如果传YES 则启用firebase和FB打点  传NO 则不启用firebase和FB打点
-[DKGASDK statistic_customEvent:ADJUST_C_P_1 withEventDic:nil useFB:YES];
+//下面2种方式都可以
+[RICHSDK statistic_customEvent:ADJUST_C_P_1 withEventDic:nil useFB:YES];
 ```
 ```
-[DKGASDK statistic_customEvent:@"c1" withEventDic:nil useFB:YES];
+[RICHSDK statistic_customEvent:@"c1" withEventDic:nil useFB:YES];
 ```
 3.10  获取本地化金额接口
 
 ```
 NSArray * productArr = @[@"com.game.id1",@"com.game.id2"];
 
-[DKGASDK getLocalizedAmountWithProduct_idArray:productArr success:^(NSArray * _Nonnull userInfo) {
+[RICHSDK getLocalizedAmountWithProduct_idArray:productArr success:^(NSArray * _Nonnull userInfo) {
 
     NSLog(@"获取本地金额成功 ： %@",userInfo);
 
