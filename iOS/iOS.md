@@ -150,6 +150,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
 - 在游戏使用中，此函数中的任意参数发生变化，都需要调用此函数，进行数据同步
 
+- 角色上报节点 1.角色创建时   2.进去游戏时 3.角色升级时
+
 ```
 // 同步游戏角色(游戏登录之后必须调用)
 //@brief 角色信息上报，要求角色信息每次变更的时候调用（比如等级的提升）
