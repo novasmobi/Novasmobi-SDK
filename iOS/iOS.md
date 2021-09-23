@@ -227,6 +227,9 @@ failed:^(NSString *result) {
 
 3.8  分享
 
+注意：分享的链接必须为完整链接，示例：https://www.baidu.com/
+
+
 ```
 //@brief 分享  图片和链接分享方式二选一  不需要的的参数传空
 //@param shareImage 分享图片
@@ -243,6 +246,9 @@ failed:^(NSString *result) {
 ```
 
 3.8  调用播放视频广告
+
+注意：viewController参数必须传UIViewController类型
+
 
 ```
 [RICHSDK rewardedVideoWithOpen:^(NSString * _Nonnull result) {
@@ -285,3 +291,20 @@ NSArray * productArr = @[@"com.game.id1",@"com.game.id2"];
 
 }];
 ```
+
+3.11  弹出系统评价接口
+
+```
+[RICHSDK evaluation];
+```
+
+3.12  获取用户绑定信息接口
+
+```
+[RICHSDK getAccountBindingListSuccess:^(NSDictionary * _Nonnull userInfo) {
+        NSLog(@"获取用户绑定信息%@",userInfo);
+    } failed:^(NSString * _Nonnull result) {
+        
+}];
+```
+
