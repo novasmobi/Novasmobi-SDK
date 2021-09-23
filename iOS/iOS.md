@@ -215,7 +215,23 @@ failed:^(NSString *result) {
 ```
 [RICHSDK onlineService];
 ```
-3.8 获取推送token
+
+3.8 获取GM有无新消息接口
+```
+  //获取GM有无新消息接口
+ [RICHSDK registerGetNewNewsResult:^(BOOL isHave) {
+        if (isHave) {
+            [SVProgressHUD showSuccessWithStatus:@"有新消息"];
+            NSLog(@"有新消息");
+        }else{
+            [SVProgressHUD showSuccessWithStatus:@"没有新消息"];
+            NSLog(@"没有新消息");
+        }
+  }];
+```
+
+
+3.9 获取推送token
 
 ```
 [RICHSDK getFcmToken:^(NSString * _Nonnull result) {
@@ -225,7 +241,7 @@ failed:^(NSString *result) {
 }];
 ```
 
-3.8  分享
+3.10  分享
 
 注意：分享的链接必须为完整链接，示例：https://www.baidu.com/
 
@@ -245,7 +261,7 @@ failed:^(NSString *result) {
 }];
 ```
 
-3.8  调用播放视频广告
+3.11  调用播放视频广告
 
 注意：viewController参数必须传UIViewController类型
 
@@ -263,7 +279,7 @@ failed:^(NSString *result) {
 }];
 ```
 
-3.9  埋点事件
+3.12  埋点事件
 
 ```
 //@brief 自定义统计事件
@@ -276,7 +292,7 @@ failed:^(NSString *result) {
 ```
 [RICHSDK statistic_customEvent:@"c1" withEventDic:nil useFB:YES];
 ```
-3.10  获取本地化金额接口
+3.13  获取本地化金额接口
 
 ```
 NSArray * productArr = @[@"com.game.id1",@"com.game.id2"];
@@ -292,13 +308,13 @@ NSArray * productArr = @[@"com.game.id1",@"com.game.id2"];
 }];
 ```
 
-3.11  弹出系统评价接口
+3.14  弹出系统评价接口
 
 ```
 [RICHSDK evaluation];
 ```
 
-3.12  获取用户绑定信息接口
+3.15  获取用户绑定信息接口
 
 ```
 [RICHSDK getAccountBindingListSuccess:^(NSDictionary * _Nonnull userInfo) {
