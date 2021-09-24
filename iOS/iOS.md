@@ -331,13 +331,21 @@ NSArray * productArr = @[@"com.game.id1",@"com.game.id2"];
 
 ```
 //role_id 用户的role_id,必传参数，不能为空值
-//success block 用户邀请好友列表返回的字典
+//success block 用户邀请的好友列表
 //failed block 查询失败返回的字符串
 [RICHSDK checkInviteListWithRole_id:@"123" success:^(NSDictionary * _Nonnull inviteListInfo) {
         
 } failed:^(NSString * _Nonnull result) {
         
 }];
+
+success返回值示例：邀请了1个好友的情况
+(
+        {
+        openid = 101743333;
+        "reg_time" = 1574819767;
+    }
+)
 ```
 
    
