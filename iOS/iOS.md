@@ -283,7 +283,7 @@ failed:^(NSString *result) {
 
 ```
 //@brief 自定义统计事件
-//@param eventName 事件名称 可传常量ADJUST_C_P_1或者字符串"c1"
+//@param eventName 事件名称 可传常量ADJUST_C_P_1或者字符串"c1"，c为小写
 //@param eventDic 事件参数字典
 //@param useFB  如果传YES 则启用firebase和FB打点  传NO 则不启用firebase和FB打点
 //下面2种方式都可以
@@ -323,4 +323,19 @@ NSArray * productArr = @[@"com.game.id1",@"com.game.id2"];
         
 }];
 ```
+
+3.16  查询用户邀请好友列表接口
+
+```
+//role_id 用户的role_id
+//success block 用户邀请好友列表返回的字典
+//failed block 查询失败返回的字符串
+[RICHSDK checkInviteListWithRole_id:@"" success:^(NSDictionary * _Nonnull inviteListInfo) {
+        
+} failed:^(NSString * _Nonnull result) {
+        
+}];
+```
+
+   
 
