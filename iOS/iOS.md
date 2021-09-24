@@ -244,8 +244,9 @@ failed:^(NSString *result) {
 3.10  分享
 
 注意：分享的链接必须为完整链接，示例："http://www.baidu.com/share.php?app_id=100000240&open_id=HY102560309&role_id=50100523000191"
-客户端需要分享出去的URL后拼接三个参数: app_id, open_id, role_id, 例:
-app_id=123&open_id=HY123&role_id=123, 需要分享的域名url由运营提供
+
+客户端需要分享出去的URL后拼接三个参数: app_id, open_id, role_id, 
+例:app_id=123&open_id=HY123&role_id=123, 需要分享的域名url由运营提供
 
 
 ```
