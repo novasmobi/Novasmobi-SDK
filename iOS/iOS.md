@@ -219,6 +219,7 @@ failed:^(NSString *result) {
 3.8 获取GM有无新消息接口
 ```
   //获取GM有无新消息接口
+  注意：登录成功后调用这个接口，后续只要有新消息就会回调这个接口。调用一次，会一直回调。
  [RICHSDK registerGetNewNewsResult:^(BOOL isHave) {
         if (isHave) {
             [SVProgressHUD showSuccessWithStatus:@"有新消息"];
