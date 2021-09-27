@@ -80,7 +80,7 @@ SDK是使用OC编写的.framework动态库。
 }];
 ```
 
-- 在AppDelegate.m中添加以下方法
+- 在AppDelegate.m中添加以下方法  以下方法为必须添加的
 ```
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler
 {
@@ -97,8 +97,8 @@ SDK是使用OC编写的.framework动态库。
     [RICHSDK appDidEnterBackground:application];
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    [RICHSDK application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options{
+    [RICHSDK application:app openURL:url options:options];
     return YES;
 }
 
