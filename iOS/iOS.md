@@ -2,7 +2,7 @@
 1.导入和工程配置
 SDK是使用OC编写的.framework动态库。
 
-1.1将demo中RICHSDK.framework文件，GoogleService-Info.plist和AdjustStatistic.plist拖入工程。
+1.1将demo中JHDHSDK.framework文件，GoogleService-Info.plist和AdjustStatistic.plist拖入工程。
 
 1.2将这1个库设置为动态库，会默认在Linked Framework中也添加这1个库，如果Linked Framework已经存在，请删除重复的库。最后是下面这种样子。
 
@@ -68,14 +68,14 @@ SDK是使用OC编写的.framework动态库。
 
 在AppDelegate.m中添加头文件引用
 
-#import <RICHSDK/RICHSDK.h>
+#import <JHDHSDK/JHDHSDK.h>
 
 - 在AppDelegate.m的didFinishLaunchingWithOptions方法中添加以下代码
 
 ```
 //初始化SDK   app_id, deskey, googleSignInClientID这些参数需要联系游戏发行方获取，改为自己的！
 
-[RICHSDK registerRICHSDKWithAppid:app_id appkey:deskey googleSignInClientID:googleSignInClientID application:application options:launchOptions result:^(BOOL isSuccess) {
+[JHDHSDK registerJHDHSDKWithAppid:app_id appkey:deskey googleSignInClientID:googleSignInClientID application:application options:launchOptions result:^(BOOL isSuccess) {
 
 }];
 ```
@@ -84,28 +84,28 @@ SDK是使用OC编写的.framework动态库。
 ```
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler
 {
-    [RICHSDK application:application continueUserActivity:userActivity restorationHandler:nil];
+    [JHDHSDK application:application continueUserActivity:userActivity restorationHandler:nil];
     return YES;
     // Your other code to handle universal links and/or user activities.
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [RICHSDK applicationDidBecomeActive:application];
+    [JHDHSDK applicationDidBecomeActive:application];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application{
-    [RICHSDK appDidEnterBackground:application];
+    [JHDHSDK appDidEnterBackground:application];
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options{
-    [RICHSDK application:app openURL:url options:options];
+    [JHDHSDK application:app openURL:url options:options];
     return YES;
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
-    [RICHSDK didReceiveRemoteNotification:userInfo];
+    [JHDHSDK didReceiveRemoteNotification:userInfo];
     
     completionHandler(UIBackgroundFetchResultNewData);
     
@@ -116,12 +116,12 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
 - SDK为游戏方提供了两种登录方式，即弹框登录和静默登录
 
-- 在项目中需要进行登录操作的xxx.h或xxx.m文件中导入 #import <RICHSDK/RICHSDK.h>
+- 在项目中需要进行登录操作的xxx.h或xxx.m文件中导入 #import <JHDHSDK/JHDHSDK.h>
 
 ```
 //弹框登录
 
- [RICHSDK loginWithSuccess:^(NSDictionary * _Nonnull userInfo) {
+ [JHDHSDK loginWithSuccess:^(NSDictionary * _Nonnull userInfo) {
 
     NSLog(@"弹框登录成功 ： %@",userInfo);
     
@@ -134,7 +134,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 ```
 //静默登录
 
-[RICHSDK silenceLoginWithSuccess:^(NSDictionary * _Nonnull userInfo) {
+[JHDHSDK silenceLoginWithSuccess:^(NSDictionary * _Nonnull userInfo) {
 
     NSLog(@"静默登录成功 ： %@",userInfo);
     
@@ -160,7 +160,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 //@param roleID 角色id
 //@param roleLevel 角色等级 NSInteger类型
 //@param roleName 角色名称
-[RICHSDK reportRoleInformationWithNewZoneID:@"" newZoneName:@"" newRoleID:@"" newRoleLevel:1 newRoleName:@""];
+[JHDHSDK reportRoleInformationWithNewZoneID:@"" newZoneName:@"" newRoleID:@"" newRoleLevel:1 newRoleName:@""];
 ```
 
 3.4 内购充值与回调
@@ -175,7 +175,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 //@param appleproductID 苹果产品id 计费点（com.game.id）
 //@param success block 支付成功返回的字符串，block里面处理支付成功的逻辑
 //@param failed block 支付失败返回的字符串，block里面处理支付失败的逻辑
-[RICHSDK payWithVorderID:vorderID zoneID:@"" zoneName:@"" roleID:@"" roleLevel:@"" roleName:@"" appleproductID:@""
+[JHDHSDK payWithVorderID:vorderID zoneID:@"" zoneName:@"" roleID:@"" roleLevel:@"" roleName:@"" appleproductID:@""
     success:^(NSString *result) {
     NSLog(@"成功 ： %@",result);
 }
@@ -187,7 +187,7 @@ failed:^(NSString *result) {
 3.5 打开SDK账号中心界面
 
 ```
-[RICHSDK bindingFacebookOrGameCenterWithSuccess:^(NSString * _Nonnull isBind) {
+[JHDHSDK bindingFacebookOrGameCenterWithSuccess:^(NSString * _Nonnull isBind) {
 
     NSLog(@"绑定第三方账号成功 ： %@",isBind);
     
@@ -195,7 +195,7 @@ failed:^(NSString *result) {
 
     NSLog(@"切换账号成功 ： %@",message);
     //切换账号后需跳转到游戏初始化界面  然后调用弹窗登录界面
-    [RICHSDK loginWithSuccess:^(NSDictionary * _Nonnull userInfo) {
+    [JHDHSDK loginWithSuccess:^(NSDictionary * _Nonnull userInfo) {
         NSLog(@"登录成功 ： %@",userInfo);
     } failed:^(NSString * _Nonnull message) {
         NSLog(@"登录失败 ： %@",message);
@@ -206,21 +206,21 @@ failed:^(NSString *result) {
 3.6 打开SDK绑定第三方账号界面
 
 ```
-[RICHSDK bindingThirdPartyAccountWithSuccess:^(NSString * _Nonnull isBind) {
+[JHDHSDK bindingThirdPartyAccountWithSuccess:^(NSString * _Nonnull isBind) {
     
 }];
 ```
 
 3.7 打开SDK客服界面
 ```
-[RICHSDK onlineService];
+[JHDHSDK onlineService];
 ```
 
 3.8 获取GM有无新消息接口
 ```
   //获取GM有无新消息接口
   注意：登录成功后调用这个接口，后续只要有新消息就会回调这个接口。调用一次，会一直回调。
- [RICHSDK registerGetNewNewsResult:^(BOOL isHave) {
+ [JHDHSDK registerGetNewNewsResult:^(BOOL isHave) {
         if (isHave) {
             [SVProgressHUD showSuccessWithStatus:@"有新消息"];
             NSLog(@"有新消息");
@@ -235,7 +235,7 @@ failed:^(NSString *result) {
 3.9 获取推送token
 
 ```
-[RICHSDK getFcmToken:^(NSString * _Nonnull result) {
+[JHDHSDK getFcmToken:^(NSString * _Nonnull result) {
 
     NSLog(@"获取推送参数成功 ： %@",result);
     
@@ -258,7 +258,7 @@ failed:^(NSString *result) {
 //@param viewController 视图控制器 必传
 //@param success block 处理分享成功的逻辑
 //@param failed block 处理分享失败的逻辑
-[RICHSDK fbShareImage:nil shareContentURL:nil shareHashtag:nil viewController:self success:^(NSString * _Nonnull result) {
+[JHDHSDK fbShareImage:nil shareContentURL:nil shareHashtag:nil viewController:self success:^(NSString * _Nonnull result) {
     NSLog(@"分享成功回调%@",result);
 } failed:^(NSString * _Nonnull result) {
     NSLog(@"分享失败回调%@",result);
@@ -271,7 +271,7 @@ failed:^(NSString *result) {
 
 
 ```
-[RICHSDK rewardedVideoWithOpen:^(NSString * _Nonnull result) {
+[JHDHSDK rewardedVideoWithOpen:^(NSString * _Nonnull result) {
     NSLog(@"视频广告开始播放%@",result);
 }viewController:self success:^(NSDictionary * _Nonnull rvPlacementInfo) {
 
@@ -291,17 +291,17 @@ failed:^(NSString *result) {
 //@param eventDic 事件参数字典
 //@param useFB  如果传YES 则启用firebase和FB打点  传NO 则不启用firebase和FB打点
 //下面2种方式都可以
-[RICHSDK statistic_customEvent:ADJUST_C_P_1 withEventDic:nil useFB:YES];
+[JHDHSDK statistic_customEvent:ADJUST_C_P_1 withEventDic:nil useFB:YES];
 ```
 ```
-[RICHSDK statistic_customEvent:@"c1" withEventDic:nil useFB:YES];
+[JHDHSDK statistic_customEvent:@"c1" withEventDic:nil useFB:YES];
 ```
 3.13  获取本地化金额接口
 
 ```
 NSArray * productArr = @[@"com.game.id1",@"com.game.id2"];
 
-[RICHSDK getLocalizedAmountWithProduct_idArray:productArr success:^(NSArray * _Nonnull userInfo) {
+[JHDHSDK getLocalizedAmountWithProduct_idArray:productArr success:^(NSArray * _Nonnull userInfo) {
 
     NSLog(@"获取本地金额成功 ： %@",userInfo);
 
@@ -315,13 +315,13 @@ NSArray * productArr = @[@"com.game.id1",@"com.game.id2"];
 3.14  弹出系统评价接口
 
 ```
-[RICHSDK evaluation];
+[JHDHSDK evaluation];
 ```
 
 3.15  获取用户绑定信息接口
 
 ```
-[RICHSDK getAccountBindingListSuccess:^(NSDictionary * _Nonnull userInfo) {
+[JHDHSDK getAccountBindingListSuccess:^(NSDictionary * _Nonnull userInfo) {
         NSLog(@"获取用户绑定信息%@",userInfo);
     } failed:^(NSString * _Nonnull result) {
         
@@ -334,7 +334,7 @@ NSArray * productArr = @[@"com.game.id1",@"com.game.id2"];
 //role_id 用户的role_id,必传参数，不能为空值
 //success block 用户邀请的好友列表
 //failed block 查询失败返回的字符串
-[RICHSDK checkInviteListWithRole_id:@"123" success:^(NSDictionary * _Nonnull inviteListInfo) {
+[JHDHSDK checkInviteListWithRole_id:@"123" success:^(NSDictionary * _Nonnull inviteListInfo) {
         
 } failed:^(NSString * _Nonnull result) {
         
