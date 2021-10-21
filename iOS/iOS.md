@@ -429,7 +429,7 @@ SDK是使用OC编写的.framework动态库。
         </dict>
 	</array>
 
-请更新您的 Info.plist 以使用描述您的使用情况的自定义消息添加 NSUserTrackingUsageDescription 键。
+请更新您的 Info.plist 以显示访问 IDFA 的 App Tracking Transparency 授权请求。添加 NSUserTrackingUsageDescription 键。
 
 下面是一个示例描述文本：
 
