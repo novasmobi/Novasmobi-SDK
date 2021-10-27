@@ -1,4 +1,5 @@
-# iOS接入文档
+# iOS接入文档   服务端文档地址http://doc.mobinovas.com:10030/web/#/80?page_id=1347
+
 1.导入和工程配置
 SDK是使用OC编写的.framework动态库。
 
