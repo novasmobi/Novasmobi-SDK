@@ -26,20 +26,14 @@ SDK是使用OC编写的.framework动态库。
 
 ![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/4.png)
 
-（2.2）添加 Facebook和VK相关内容
+（2.2）添加 Facebook、Google和VK相关内容
 
 ![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/5.png)
 
 ![Image text](https://github.com/novasmobi/Novasmobi-SDK/blob/main/iOS/img/6.png)
 
 
-![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/8.png)
-
-（2.3）添加谷歌相关内容
-
-![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/9.png)
-
-![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/10.png)
+![Image text](https://github.com/novasmobi/Novasmobi-SDK/blob/main/iOS/img/8.png)
 
 
 （2.5）配置ATT权限和SKAdNetworkIdentifier
