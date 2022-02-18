@@ -7,7 +7,7 @@ SDK是使用OC编写的.framework动态库。
 
 1.1将demo中DGTRSDK.framework和VKSdkFramework文件，GoogleService-Info.plist和AdjustStatistic.plist拖入工程。
 
-1.2将这1个库设置为动态库，会默认在Linked Framework中也添加这1个库，如果Linked Framework已经存在，请删除重复的库。最后是下面这种样子。
+1.2将这1个库设置为动态库，会默认在Linked Framework中也添加这1个库，如果Linked Framework已经存在，请删除重复的库。最后如下图所示。
 
 ![Image text](https://raw.githubusercontent.com/zqkzhang/Novasmobi-SDK/main/iOS/img/1.png)
 
